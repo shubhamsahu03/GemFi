@@ -1,17 +1,4 @@
-# 🌟 Advanced MERN AI Finance SaaS Platform - Finora
-
-> This code, whether in parts or whole, is licensed for commercial use **only with a license**. It is **free for personal use**.
-> 👉 [Click here to obtain license](https://techwithemma.gumroad.com/l/huytmd) and 👉 [here to learn more](https://github.com/TechWithEmmaYT/Advanced-MERN-AI-Financial-SaaS-Platform/blob/main/TECHWITHEMMA-LICENSE.md)
-
-## ❤️ Support the Channel
-
-Love this project? Here’s how you can support:
-
-* ☕ [Buy Me a Coffee](https://buymeacoffee.com/techwithemmaofficial)
-* 🌟 Star this repo
-* 🎥 [Subscribe on YouTube](https://tinyurl.com/subcribe-to-techwithEmma)
-
----
+# 🌟 Advanced MERN AI Finance SaaS Platform - GemFi
 
 ## 🗝️ Key Features: 👇
 
@@ -32,49 +19,51 @@ Love this project? Here’s how you can support:
 * 🧑‍💼 Upload Profile Photo (Cloudinary)
 * 🌐 Built with MERN Stack (Node.js, MongoDB, React, TypeScript)
 
-- 💳 [Premium] Upgrades via Stripe — Free Trial, Monthly & Yearly Plans, Easy Plan Switching 👉 [Get It Here](https://techwithemma.gumroad.com/l/gasvc)
-
-
-
-## 🔧 How to Use This Project
-
-### 📺 Step 1: Watch the Complete Full Course on YouTube
-
-> Learn how it all works, including the folder structure, integration, AI config, and more.
-> 👉 [Watch the Course](https://www.youtube.com/watch?v=2S7Y2wewF6I)
-
-
-
-### 💻 Step 2: Run It Locally, Setup Video, Live Preview
-
-> Want to run this project on your own machine? We've got you covered:
-👉 [Setup & Live Preview Link](https://techwithemma.gumroad.com/l/nphhyz)
-
-
-
-### 🚀 [Step 3]: Get the Extended Version — Stripe Payment Video (Free Trial), Full Source Code, Deployment & More.
-
-This is the missing piece — the Stripe payment that powers your SaaS.
-👉 [Get the Extended Version](https://techwithemma.gumroad.com/l/gasvc)
-
-* Free Trial + Monthly & Yearly Plan
-* Switch between Monthly ↔️ Yearly Plan
-* Full Stripe Integration & Webhooks
-* Setup Video (Run locally)
-* Complete Full Source Code
-* Plus Support
 ---
 
-## 📜 License Information
+## 🛠️ Getting Started
 
-A paid license is required for commercial use. To obtain a commercial license, please visit 👉 [Here](https://techwithemma.gumroad.com/l/huytmd)
+### 1. Clone the repository
 
-For more details about license, please refer to the [TECHWITHEMMA-LICENSE.md](https://github.com/TechWithEmmaYT/Advanced-MERN-AI-Financial-SaaS-Platform/blob/main/TECHWITHEMMA-LICENSE.md).
+```bash
+git clone https://github.com/yourusername/GemFi.git
+cd GemFi
+```
 
----
+### 2. Install Dependencies
 
-# 📺 Subscribe for More Projects
+```bash
+npm install
+```
 
-If you find this helpful, support by subscribing and sharing:
+### 3. Configure Environment Variables
 
-🔗 [https://tinyurl.com/subcribe-to-techwithEmma](https://tinyurl.com/subcribe-to-techwithEmma)
+Create a .env file and add the following:
+
+Server Side
+```bash
+MONGO_URI="isert-your-mongodb-url"
+GEMINI_API_KEY="insert-your-gemini-api-key"
+
+JWT_SECRET="Your-jwt-secret"
+CLOUDINARY_API_KEY="your-cloudinary-api-key"
+CLOUDINARY_API_SECRET="your-cloudinary-api-secret"
+CLOUDINARY_CLOUD_NAME="your-cloudinary-name"
+FRONTEND_ORIGIN="http://localhost:5173"
+PORT=8000
+NODE_ENV=development
+RESEND_API_KEY="your-resend-api-key"
+```
+
+Client Side
+```bash
+VITE_API_URL=http://localhost:8000/api
+VITE_REDUX_PERSIST_SECRET_KEY=your-reduc-presist-secret-key
+```
+
+
+### 4. Run the development server
+```bash
+npm run dev
+```
+
