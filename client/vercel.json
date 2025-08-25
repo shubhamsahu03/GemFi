@@ -1,8 +1,13 @@
 {
+  "version": 3,
   "rewrites": [
     {
       "source": "/api/:path*",
       "destination": "https://gemfi.onrender.com/api/:path*"
+    },
+    {
+      "source": "/api",
+      "destination": "https://gemfi.onrender.com/api"
     }
   ]
 }
