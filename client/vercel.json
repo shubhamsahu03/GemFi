@@ -8,6 +8,7 @@
     {
       "source": "/api",
       "destination": "https://gemfi.onrender.com/api"
-    }
+    },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
