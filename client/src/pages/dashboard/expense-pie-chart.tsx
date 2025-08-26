@@ -1,6 +1,7 @@
+"use client";
 
+import { useEffect, useState } from "react";
 import { Label, Pie, PieChart, Cell } from "recharts";
-
 import {
   Card,
   CardContent,
@@ -16,11 +17,11 @@ import {
   ChartTooltipContent,
 } from "@/components/ui/chart";
 import { DateRangeType } from "@/components/date-range-select";
-import { formatCurrency } from "@/lib/format-currency";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatPercentage } from "@/lib/format-percentage";
 import { EmptyState } from "@/components/empty-state";
 import { useExpensePieChartBreakdownQuery } from "@/features/analytics/analyticsAPI";
+import { detectCurrency, formatCurrency } from "@/utils/currencyFormatter";
 
 const COLORS = [
   "var(--color-chart-1)",
@@ -45,9 +46,23 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
   const categories = data?.data?.breakdown || [];
   const totalSpent = data?.data?.totalSpent || 0;
 
+  // State for currency + locale
+  const [currency, setCurrency] = useState("INR");
+  const [locale, setLocale] = useState("en-IN");
+
+  useEffect(() => {
+    const fetchCurrency = async () => {
+      const { currency, locale } = await detectCurrency();
+      setCurrency(currency);
+      setLocale(locale);
+    };
+    fetchCurrency();
+  }, []);
+
   if (isFetching) {
     return <PieChartSkeleton />;
   }
+
   // Custom legend component
   const CustomLegend = () => {
     return (
@@ -64,7 +79,7 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
               </span>
               <div className="flex items-center gap-2">
                 <span className="text-xs text-muted-foreground whitespace-nowrap">
-                  {formatCurrency(entry.value)}
+                  {formatCurrency(entry.value, currency, locale)}
                 </span>
                 <span className="text-xs text-muted-foreground/60">
                   ({formatPercentage(entry.percentage, { decimalPlaces: 0 })})
@@ -98,7 +113,17 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
               <PieChart>
                 <ChartTooltip
                   cursor={false}
-                  content={<ChartTooltipContent />}
+                  content={
+                    <ChartTooltipContent
+                      formatter={(value, name) => {
+                        const num =
+                          typeof value === "number"
+                            ? value
+                            : parseFloat(value as string);
+                        return [formatCurrency(num, currency, locale), name];
+                      }}
+                    />
+                  }
                 />
 
                 <Pie
@@ -133,7 +158,10 @@ const ExpensePieChart = (props: { dateRange?: DateRangeType }) => {
                               y={viewBox.cy}
                               className="fill-foreground text-2xl font-bold"
                             >
-                              ${totalSpent.toLocaleString()}
+                              {formatCurrency(totalSpent, currency, locale, {
+                                compact: false,
+                                decimalPlaces: 0,
+                              })}
                             </tspan>
                             <tspan
                               x={viewBox.cx}
